@@ -1,4 +1,6 @@
 import RequestHandler from "./RequestHandler";
+import Request from "./Request";
+import Response from "./Response";
 
 interface IParam {
 	index: number;
@@ -8,7 +10,6 @@ interface IParam {
 class Route {
 	public params: IParam[] = [];
 
-	private segments: string[] = [];
 	private handlers: RequestHandler[];
 
 	constructor(
@@ -17,21 +18,16 @@ class Route {
 		...handlers: RequestHandler[]
 	) {
 		this.handlers = handlers;
-		this.segments = this.url.split("/");
-		this.segments.forEach((segment, index) => {
-			if (this.isParam(segment)) {
-				const match = segment.match(/\{([^)]+)\}/);
-				if (match) {
-					this.params.push({ index, name: match[1] });
-				}
-			}
-		});
 	}
 
-	private isParam(segment: string): boolean {
-		segment = segment.replace("/", "");
-		return segment.startsWith("{") && segment.endsWith("}");
+	public handleRequest(req: Request, res: Response) {
+		this.handlers[0](req, res);
 	}
+
+	// public pipeRequestToHandlers(req: Request, res: Response) {
+	// 	const boundHandlers = this.handlers.map((f, i, arr) => f.bind(null,req,res, arr[i+1]()));
+	// }
+
 }
 
 export default Route;

@@ -12,23 +12,23 @@ class Router {
 	}
 
 	public get(url: string, ...handlers: RequestHandler[]) {
-		this.registerRoute(new Route(url, "GET", ...handlers));
+		this.registerRoute(new Route(`${this.baseURL}${url}`, "GET", ...handlers));
 	}
 
 	public post(url: string, ...handlers: RequestHandler[]) {
-		this.registerRoute(new Route(url, "POST", ...handlers));
+		this.registerRoute(new Route(`${this.baseURL}${url}`, "POST", ...handlers));
 	}
 
 	public put(url: string, ...handlers: RequestHandler[]) {
-		this.registerRoute(new Route(url, "PUT", ...handlers));
+		this.registerRoute(new Route(`${this.baseURL}${url}`, "PUT", ...handlers));
 	}
 
 	public patch(url: string, ...handlers: RequestHandler[]) {
-		this.registerRoute(new Route(url, "PATCH", ...handlers));
+		this.registerRoute(new Route(`${this.baseURL}${url}`, "PATCH", ...handlers));
 	}
 
 	public delete(url: string, ...handlers: RequestHandler[]) {
-		this.registerRoute(new Route(url, "DELETE", ...handlers));
+		this.registerRoute(new Route(`${this.baseURL}${url}`, "DELETE", ...handlers));
 	}
 
 	private registerRoute(route: Route) {

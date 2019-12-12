@@ -7,6 +7,11 @@ class Response {
 		this.res = response;
 	}
 
+	public json(data: any) {
+		this.res.write(JSON.stringify(data));
+		return this;
+	}
+
 	public send(data: any) {
 		this.res.write(data);
 		return this;

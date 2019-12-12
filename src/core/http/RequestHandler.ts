@@ -1,6 +1,10 @@
 import Request from "./Request";
 import Response from "./Response";
 
-type RequestHandler = (req: Request, res: Response, next?: void) => void;
+export interface INextFunction {
+    (err?: any): void;
+}
 
-export default RequestHandler;
+export default interface RequestHandler {
+    (req: Request, res: Response, next?: INextFunction): any;
+}

@@ -2,6 +2,9 @@
     "extends": ["tslint:recommended", "tslint-config-prettier"],
     "rules": {
         "ordered-imports": false,
-        "curly": [true, "ignore-same-line"]
+        "curly": [true, "ignore-same-line"],
+        "callable-types": false,
+        "interface-name": false,
+        "prefer-for-of": false
     }
 }
